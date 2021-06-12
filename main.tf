@@ -7,18 +7,6 @@ terraform {
   }
 }
 
-variable "config_name" {
-  description = "The name of this configuration"
-  type        = string
-  default     = "simple-rocketchat"
-}
-
-variable "instance_type" {
-  description = "The type of EC2 instances"
-  type        = string
-  default     = "t2.micro"
-}
-
 provider "aws" {
   region = "ap-northeast-1"
 }
@@ -126,9 +114,4 @@ resource "aws_instance" "main" {
   tags = {
     Name = "${var.config_name}-instance"
   }
-}
-
-output "instance_public_dns" {
-  value       = aws_instance.main.public_dns
-  description = "The dns name of the instance"
 }
